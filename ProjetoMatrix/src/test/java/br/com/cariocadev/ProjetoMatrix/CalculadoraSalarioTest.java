@@ -34,11 +34,11 @@ public class CalculadoraSalarioTest {
 		CalculadoraSalario calculadora = new CalculadoraSalario();
 		assertNotNull("O método não deve retonar null",
 				calculadora.getSalarioLiquido(new BigDecimal(1000.00), new BigDecimal(8.0)));
-		assertEquals(new BigDecimal(920.00),
+		assertEquals(new BigDecimal(920.00).setScale(2, BigDecimal.ROUND_HALF_UP),
 				calculadora.getSalarioLiquido(new BigDecimal(1000.00), new BigDecimal(8.0)));
-		assertEquals(new BigDecimal(900.00),
+		assertEquals(new BigDecimal(900.00).setScale(2, BigDecimal.ROUND_HALF_UP),
 				calculadora.getSalarioLiquido(new BigDecimal(1000.00), new BigDecimal(10.0)));
-		assertNotEquals(new BigDecimal(100.00),
+		assertNotEquals(new BigDecimal(100.00).setScale(2, BigDecimal.ROUND_HALF_UP),
 				calculadora.getSalarioLiquido(new BigDecimal(1000.00), new BigDecimal(8.0)));
 	}
 
@@ -59,16 +59,24 @@ public class CalculadoraSalarioTest {
 	@Test
 	public void deveRetornarOValorDoDescontoDoInssDeAcordoComATabelaDeImposto() {
 		CalculadoraSalario calculadora = new CalculadoraSalario();
-		assertNotNull("O método não deve retonar null", calculadora.getValorINSS(new BigDecimal(1000.00)));
-		assertEquals(new BigDecimal(80.00), calculadora.getValorINSS(new BigDecimal(1000.00)));
-		assertEquals(new BigDecimal(135.50), calculadora.getValorINSS(new BigDecimal(1693.72)));
+		assertNotNull("O método não deve retonar null",
+				calculadora.getValorINSS(new BigDecimal(1000.00).setScale(2, BigDecimal.ROUND_HALF_UP)));
+		assertEquals(new BigDecimal(80.00).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(1000.00).setScale(2, BigDecimal.ROUND_HALF_UP)));
+		assertEquals(new BigDecimal(135.50).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(1693.72).setScale(2, BigDecimal.ROUND_HALF_UP)));
 
-		assertEquals(new BigDecimal(152.43), calculadora.getValorINSS(new BigDecimal(1693.73)));
-		assertEquals(new BigDecimal(180.00), calculadora.getValorINSS(new BigDecimal(2000.00)));
-		assertEquals(new BigDecimal(254.06), calculadora.getValorINSS(new BigDecimal(2822.90)));
+		assertEquals(new BigDecimal(152.44).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(1693.73).setScale(2, BigDecimal.ROUND_HALF_UP)));
+		assertEquals(new BigDecimal(180.00).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(2000.00).setScale(2, BigDecimal.ROUND_HALF_UP)));
+		assertEquals(new BigDecimal(254.06).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(2822.90)));
 
-		assertEquals(new BigDecimal(310.52), calculadora.getValorINSS(new BigDecimal(2822.91)));
-		assertEquals(new BigDecimal(330.00), calculadora.getValorINSS(new BigDecimal(3000.00)));
+		assertEquals(new BigDecimal(310.52).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(2822.91).setScale(2, BigDecimal.ROUND_HALF_UP)));
+		assertEquals(new BigDecimal(330.00).setScale(2, BigDecimal.ROUND_HALF_UP),
+				calculadora.getValorINSS(new BigDecimal(3000.00).setScale(2, BigDecimal.ROUND_HALF_UP)));
 	}
 
 	@Test
@@ -81,10 +89,10 @@ public class CalculadoraSalarioTest {
 	@Test
 	public void deveRetornarOValorDoPlanoDeSaudePorIdade() {
 		CalculadoraSalario calculadora = new CalculadoraSalario();
-		assertNotNull("O método não deve retonar null", calculadora.getValorPlanoDesaude(50));
+		assertNotNull("O método não deve retonar null", calculadora.getValorPlanoDeSaude(50));
 
 		for (int i = 0; i < 70; i++) {
-			assertEquals(getPrecoPlanoSaudePorIdade(i), calculadora.getValorPlanoDesaude(i));
+			assertEquals(getPrecoPlanoSaudePorIdade(i), calculadora.getValorPlanoDeSaude(i));
 		}
 	}
 
@@ -95,3 +103,4 @@ public class CalculadoraSalarioTest {
 		return idade > 60 ? rangePlanoSaude.get(60) : rangePlanoSaude.get(idade);
 	}
 }
+
