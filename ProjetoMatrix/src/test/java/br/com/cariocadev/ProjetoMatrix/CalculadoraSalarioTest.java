@@ -103,4 +103,3 @@ public class CalculadoraSalarioTest {
 		return idade > 60 ? rangePlanoSaude.get(60) : rangePlanoSaude.get(idade);
 	}
 }
-
