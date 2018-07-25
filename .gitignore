@@ -106,5 +106,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+*~.directory
+
 
 # End of https://www.gitignore.io/api/java,maven,eclipse
