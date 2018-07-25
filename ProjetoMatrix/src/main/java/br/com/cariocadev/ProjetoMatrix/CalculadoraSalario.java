@@ -14,7 +14,7 @@ public class CalculadoraSalario {
 		return null;
 	}
 
-	public BigDecimal getValorPlanoDesaude(Integer idade) {
+	public BigDecimal getValorPlanoDeSaude(Integer idade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
