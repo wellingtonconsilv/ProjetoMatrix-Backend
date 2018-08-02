@@ -6,7 +6,7 @@ public class CalculadoraSalario {
 
 	public BigDecimal getSalarioLiquido(BigDecimal salarioBruto, BigDecimal percentualImpostoINSS) {
 		BigDecimal salarioLiquido = new BigDecimal("0");
-		if(salarioBruto != null && percentualImpostoINSS != null) {
+		if(salarioBruto != null && salarioBruto.compareTo(BigDecimal.ZERO) > 0) {
 			salarioLiquido = salarioBruto.subtract(salarioBruto.multiply(percentualImpostoINSS).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP));
 			return salarioLiquido;
 		}else {
@@ -18,19 +18,19 @@ public class CalculadoraSalario {
 
 	public BigDecimal getValorINSS(BigDecimal salarioBruto) {
 		
-		BigDecimal INSS = new BigDecimal("0");
+		BigDecimal inss = new BigDecimal("0");
 		if(salarioBruto != null) {
 			if (salarioBruto.compareTo(new BigDecimal("1693.72"))<=0) {
-				INSS = salarioBruto.multiply(new BigDecimal("8")).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
+				inss = salarioBruto.multiply(new BigDecimal("8")).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
 				
 			}else if(salarioBruto.compareTo(new BigDecimal("1693.73"))>=0 && salarioBruto.compareTo(new BigDecimal("2822.90"))<=0) {
-				INSS = salarioBruto.multiply(new BigDecimal("9")).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
+				inss = salarioBruto.multiply(new BigDecimal("9")).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
 				
 			}else if(salarioBruto.compareTo(new BigDecimal("2822.91"))>=0) {
-				INSS = salarioBruto.multiply(new BigDecimal("11")).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
+				inss = salarioBruto.multiply(new BigDecimal("11")).divide(new BigDecimal("100"), 2, BigDecimal.ROUND_HALF_UP);
 			}
 			
-			return INSS;
+			return inss;
 		}else {
 			throw new IllegalArgumentException();
 		}
