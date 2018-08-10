@@ -1,4 +1,4 @@
-package br.com.projetomatrix.academico;
+package br.com.projetomatrix.academico.models;
 
 import br.com.projetomatrix.academico.enumeracoes.Status;
 
@@ -48,6 +48,14 @@ public abstract class Pessoa {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public GeraMatricula getGerar() {
+		return gerar;
+	}
+
+	public void setGerar(GeraMatricula gerar) {
+		this.gerar = gerar;
 	}
 
 }

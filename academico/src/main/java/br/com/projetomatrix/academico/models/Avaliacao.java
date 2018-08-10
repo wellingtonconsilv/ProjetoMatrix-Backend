@@ -1,4 +1,4 @@
-package br.com.projetomatrix.academico.curso;
+package br.com.projetomatrix.academico.models;
 
 import java.math.BigDecimal;
 

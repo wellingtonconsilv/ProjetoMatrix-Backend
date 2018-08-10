@@ -1,4 +1,4 @@
-package br.com.projetomatrix.academico;
+package br.com.projetomatrix.academico.models;
 
 public class Coordenador extends Professor{
 

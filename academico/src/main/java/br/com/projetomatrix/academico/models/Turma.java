@@ -1,9 +1,6 @@
-package br.com.projetomatrix.academico;
+package br.com.projetomatrix.academico.models;
 
 import java.util.List;
-
-import br.com.projetomatrix.academico.curso.Disciplina;
-import br.com.projetomatrix.academico.curso.Horario;
 
 public class Turma {
 	private Disciplina disciplina;

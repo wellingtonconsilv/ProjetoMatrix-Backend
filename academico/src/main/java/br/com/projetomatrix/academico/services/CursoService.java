@@ -3,42 +3,45 @@ package br.com.projetomatrix.academico.services;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.projetomatrix.academico.GeraCodigo;
-import br.com.projetomatrix.academico.curso.Curso;
+import org.springframework.util.ObjectUtils;
+
+import br.com.projetomatrix.academico.models.Curso;
+import br.com.projetomatrix.academico.models.Disciplina;
+import br.com.projetomatrix.academico.models.GeraCodigo;
 
 public class CursoService {
 	Map<Integer, Curso> hashCurso = new HashMap<Integer, Curso>();
 	GeraCodigo gerarCodigo = new GeraCodigo();
 
-	public Curso cadastarCurso(Curso curso) {
-		if (curso == null && hashCurso.containsKey(curso.getCodigo() == 0))
+	public Curso cadastrarCurso(Curso curso) {
+		if (ObjectUtils.isEmpty(curso) || hashCurso.containsKey(curso.getCodigo()))
 			throw new IllegalArgumentException();
-
-		hashCurso.put(gerarCodigo.gerarCodigo(curso), curso);
+		curso.setCodigo(gerarCodigo.gerarCodigo(curso));
+		hashCurso.put(curso.getCodigo(), curso);
 		return curso;
 	}
 
 	public void removerCurso(Curso curso) {
-		if (curso == null)
+		if (ObjectUtils.isEmpty(curso))
 			throw new IllegalArgumentException();
 		hashCurso.remove(curso.getCodigo());
 
 	}
 
 	public Curso atualizarCurso(Curso curso) {
-		if (curso == null || curso.getCodigo() == 0)
+		if (ObjectUtils.isEmpty(curso) || ObjectUtils.isEmpty(curso.getCodigo()))
 			throw new IllegalArgumentException();
 		removerCurso(curso);
-		cadastarCurso(curso);
+		cadastrarCurso(curso);
 		return curso;
 	}
 
 	public Curso recuperarCurso(Curso curso) {
-		if (curso == null || curso.getCodigo() == 0)
+		if (ObjectUtils.isEmpty(curso) || ObjectUtils.isEmpty(curso.getCodigo()))
 			throw new IllegalArgumentException();
 
 		return hashCurso.get(curso.getCodigo());
-
-	}
+		
+	}	
 
 }

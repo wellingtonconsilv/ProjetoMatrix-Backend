@@ -1,8 +1,6 @@
-package br.com.projetomatrix.academico.curso;
+package br.com.projetomatrix.academico.models;
 
 import java.util.List;
-
-import br.com.projetomatrix.academico.Professor;
 
 public class Disciplina {
 	private Curso curso;

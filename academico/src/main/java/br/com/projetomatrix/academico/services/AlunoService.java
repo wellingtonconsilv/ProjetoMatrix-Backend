@@ -6,24 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.com.projetomatrix.academico.Aluno;
-import br.com.projetomatrix.academico.GeraMatricula;
-import br.com.projetomatrix.academico.curso.Avaliacao;
+import org.springframework.util.ObjectUtils;
+
+import br.com.projetomatrix.academico.models.Aluno;
+import br.com.projetomatrix.academico.models.Avaliacao;
+import br.com.projetomatrix.academico.models.Boletim;
+import br.com.projetomatrix.academico.models.GeraMatricula;
+import br.com.projetomatrix.academico.models.Turma;
 
 public class AlunoService {
-	Map<String, Aluno> hashAluno = new HashMap<String, Aluno>();
-	GeraMatricula gerar = new GeraMatricula();
-
-	public Map<String, Aluno> getHashAluno() {
-		return hashAluno;
-	}
-
-	public void setHashAluno(Map<String, Aluno> hashAluno) {
-		this.hashAluno = hashAluno;
-	}
+	private Map<String, Aluno> hashAluno = new HashMap<String, Aluno>();
+	private GeraMatricula gerar = new GeraMatricula();
 
 	public Aluno cadastrarAluno(Aluno aluno) {
-		if (aluno == null)
+		if (ObjectUtils.isEmpty(aluno) || hashAluno.containsKey(aluno.getMatricula()))
 			throw new IllegalArgumentException(); 
 		aluno.setMatricula(gerar.gerarMatricula(aluno));
 		hashAluno.put(aluno.getMatricula(), aluno);
@@ -52,12 +48,12 @@ public class AlunoService {
 		return hashAluno.get(matricula);
 	}
 	
-	public BigDecimal pegarMedia(List<Avaliacao> avaliacoes){
-		BigDecimal somaAluno = new BigDecimal("0");
-		BigDecimal mediaAluno = new BigDecimal("0");
-		for(Avaliacao nota:  avaliacoes) 
-			somaAluno.add(nota.getNota());
-		return mediaAluno = somaAluno.divide(BigDecimal.valueOf(3)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+	public List<Turma> buscarTurmasAluno(){
+		
+		return null;
 	}
+	
+	
+
 	
 }

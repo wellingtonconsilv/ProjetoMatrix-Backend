@@ -1,13 +1,11 @@
-package br.com.projetomatrix.academico;
+package br.com.projetomatrix.academico.models;
 
 import java.util.List;
 
-import br.com.projetomatrix.academico.curso.Avaliacao;
-
 public class Boletim {
-	Aluno aluno;
-	Turma turma;
-	Avaliacao[] avaliacoes = new Avaliacao[3];
+	private Aluno aluno;
+	private Turma turma;
+	private List<Avaliacao> avaliacoes;
 
 	public Aluno getAluno() {
 		return aluno;
@@ -25,11 +23,11 @@ public class Boletim {
 		this.turma = turma;
 	}
 
-	public Avaliacao[] getAvaliacoes() {
+	public List<Avaliacao> getAvaliacoes() {
 		return avaliacoes;
 	}
 
-	public void setAvaliacoes(Avaliacao[] avaliacoes) {
+	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
 		this.avaliacoes = avaliacoes;
 	}
 

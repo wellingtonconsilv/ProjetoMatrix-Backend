@@ -3,8 +3,8 @@ package br.com.projetomatrix.academico.services;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.projetomatrix.academico.Coordenador;
-import br.com.projetomatrix.academico.GeraMatricula;
+import br.com.projetomatrix.academico.models.Coordenador;
+import br.com.projetomatrix.academico.models.GeraMatricula;
 
 public class CoordenadorService {
 	Map<String, Coordenador> hashCoordenador = new HashMap<String, Coordenador>();
@@ -19,7 +19,7 @@ public class CoordenadorService {
 	}
 
 	public Coordenador cadastrarCoordenador(Coordenador coordenador) {
-		if (coordenador == null || hashCoordenador.containsKey(coordenador.getMatricula().length() == 0))
+		if (coordenador == null || hashCoordenador.containsKey(coordenador.getMatricula().length()))
 			throw new IllegalArgumentException();
 		coordenador.setMatricula(gerar.gerarMatricula(coordenador));
 		hashCoordenador.put(coordenador.getMatricula(), coordenador);

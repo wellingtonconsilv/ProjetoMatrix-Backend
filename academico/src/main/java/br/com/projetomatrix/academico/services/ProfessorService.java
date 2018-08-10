@@ -3,8 +3,11 @@ package br.com.projetomatrix.academico.services;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.com.projetomatrix.academico.GeraMatricula;
-import br.com.projetomatrix.academico.Professor;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
+import br.com.projetomatrix.academico.models.GeraMatricula;
+import br.com.projetomatrix.academico.models.Professor;
 
 public class ProfessorService {
 
@@ -15,12 +18,8 @@ public class ProfessorService {
 		return hashProfessor;
 	}
 
-	public void setHashAluno(Map<String, Professor> hashCoordenador) {
-		this.hashProfessor = hashCoordenador;
-	}
-
 	public Professor cadastrarProfessor(Professor professor) {
-		if (professor == null || hashProfessor.containsKey(professor.getMatricula().length() == 0))
+		if (ObjectUtils.isEmpty(professor) || hashProfessor.containsKey(professor.getMatricula()))
 			throw new IllegalArgumentException();
 		professor.setMatricula(gerar.gerarMatricula(professor));
 		hashProfessor.put(professor.getMatricula(), professor);
@@ -28,24 +27,23 @@ public class ProfessorService {
 	}
 
 	public void removerProfessor(String matricula) {
-		if (matricula == null || matricula.length() == 0)
+		if (StringUtils.isEmpty(matricula)|| StringUtils.isEmpty(matricula))
 			throw new IllegalArgumentException();
 
 		hashProfessor.remove(matricula);
 
 	}
 
-	public Professor atualizarProfessor(Professor coordenador) {
-		if (coordenador == null || coordenador.getMatricula().length() == 0)
+	public Professor atualizarProfessor(Professor professor) {
+		if (ObjectUtils.isEmpty(professor) || ObjectUtils.isEmpty(professor.getMatricula()))
 			throw new IllegalArgumentException();
 
-		removerProfessor(coordenador.getMatricula());
-		cadastrarProfessor(coordenador);
-		return coordenador;
+		hashProfessor.put(professor.getMatricula(), professor);
+		return professor;
 	}
 
 	public Professor recuperarProfessor(String matricula) {
-		if (matricula == null || matricula.length() == 0)
+		if (StringUtils.isEmpty(matricula))
 			throw new IllegalArgumentException();
 		return hashProfessor.get(matricula);
 	}

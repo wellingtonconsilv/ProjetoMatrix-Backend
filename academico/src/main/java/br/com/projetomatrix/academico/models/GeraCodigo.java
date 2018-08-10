@@ -1,9 +1,4 @@
-package br.com.projetomatrix.academico;
-
-import br.com.projetomatrix.academico.curso.Avaliacao;
-import br.com.projetomatrix.academico.curso.Curso;
-import br.com.projetomatrix.academico.curso.Disciplina;
-import br.com.projetomatrix.academico.curso.Horario;
+package br.com.projetomatrix.academico.models;
 
 public class GeraCodigo {
 	Integer codigoTurma = new Integer(0);
@@ -11,6 +6,7 @@ public class GeraCodigo {
 	Integer codigoCurso = new Integer(0);
 	Integer codigoAvaliacao = new Integer(0);
 	Integer codigoHorario = new Integer(0);
+	Integer codigoBoletim = new Integer(0);
 	
 	public Integer gerarCodigo(Turma turma) {
 		if (turma == null)
@@ -48,6 +44,14 @@ public class GeraCodigo {
 		if (horario == null)
 			throw new IllegalArgumentException();
 		codigoHorario++;
+		return codigoAvaliacao;
+
+	}
+
+	public Integer gerarCodigo(Boletim boletim) {
+		if (boletim == null)
+			throw new IllegalArgumentException();
+		codigoBoletim++;
 		return codigoAvaliacao;
 
 	}

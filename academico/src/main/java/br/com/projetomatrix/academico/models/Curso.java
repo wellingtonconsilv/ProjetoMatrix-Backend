@@ -1,8 +1,6 @@
-package br.com.projetomatrix.academico.curso;
+package br.com.projetomatrix.academico.models;
 
 import java.util.List;
-
-import br.com.projetomatrix.academico.Coordenador;
 
 public class Curso {
 	private double cargaHoraria;
@@ -54,6 +52,7 @@ public class Curso {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
+
 	
-	 
+
 }
